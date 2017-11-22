@@ -1,0 +1,10 @@
+{
+	"testMethods": [
+		"ingestTitle",
+		"enableRuleset",
+		"disableRuleset",
+		"updateCPProfile",
+		"updateDistProfile"
+	]
+
+}
