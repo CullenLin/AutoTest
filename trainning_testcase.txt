@@ -3,7 +3,7 @@ ingestTitle : ingest a package
 ingestTitle : ingest a tarball
 enableRuleset : enable ruleset 18
 enableRuleset : enable content processing ruleset 20
-disableRuleset : disable ruleset
+disableRuleset : disable ruleset 20
 disableRuleset : disable content processing ruleset 20
 updateCPProfile : update cp-profile MSMW.xml, set movie.platform=ENVIVIO_CBR
 updateCPProfile : set preview.content_evluation.profile=abc in cp-profile ott.xml

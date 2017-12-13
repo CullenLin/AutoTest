@@ -2,6 +2,7 @@ import os
 import json
 import numpy as np
 import tensorflow as tf
+from test_utils import readTestMethod
 
 TRAINING_TESTCASE_FILE = 'trainning_testcase.txt'
 TRAINING_FEATURE_FILE = 'training_features'
@@ -19,16 +20,7 @@ def readTcVocabulary():
         
     return (feature_words, len(feature_words))
 
-def readTestMethod():
-    data = json.load(open(TEST_METHOD_DEF_FILE))
-    if 'testMethods' not in data:
-        print('testMethods is not defined in json')
-        exit(1)
-    testMethods = data['testMethods']
-    num_of_test_methods = len(testMethods)
-    return (testMethods, num_of_test_methods)
-
-def main():
+def generated_training_samples():
     print('generating training samples...')
     feature_words, featureSize = readTcVocabulary()        
     testMethods, methodSize = readTestMethod()
@@ -73,6 +65,27 @@ def main():
     #print(data.item().get('features'))
     #print(data.item().get('labels'))
         
+def generate_test_samples():
+    feature_words, featureSize = readTcVocabulary() 
 
+    # open test samples
+    tcFile = open('testing_tc_samples.txt', "rt")    
+    example = tcFile.readline().lower().strip()
+    
+    features = []
+    while example:
+        feature = []
+        for word in feature_words:
+            feature.append(1) if word in example.split() else feature.append(0)
+        features.append(feature)
+        example = tcFile.readline().strip().lower()
+
+    print(features)
+    # Save converted test samples
+    print('Saving testing data to \"' + 'testing_features' + '.npy\"')
+    np.save('testing_features.npy', {'features':np.array(features)})
+            
 if __name__ == "__main__":
-    main()
+    #generated_training_samples()
+    
+    generate_test_samples()

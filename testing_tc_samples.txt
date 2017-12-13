@@ -1,0 +1,3 @@
+Ingest an offer title
+Enable targeting ruleset 10
+Ingest an ADI package
